@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+//suon chuong trinh quay lui 
+const int N=5,k=3;
+int count =0,x[k+1],sum;
+bool visited[N+1];
+
+void print()
+{
+  if((sum%k)==0)
+  {
+  count++;
+	for(int j=1;j<=k;j++)
+		cout<<x[j]<<" ";
+	cout<<endl;
+  }
+}
+
+
+
+void TRY(int i)
+{
+	for(int v=x[i-1]+1;v<=N-k+i;v++)
+  {
+    x[i]=v;
+    sum+=v;
+    if(i==k) print();
+    else TRY(i+1);
+    sum-=v;
+  }
+} 
+
+int main()
+{
+  x[0]=0;
+  TRY(1);
+  cout<<"Tong so cau hinh: "<<count;
+	return 0;
+}
